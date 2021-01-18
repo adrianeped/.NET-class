@@ -17,13 +17,13 @@ namespace Revisao
                 {
                     case "1":
                         Console.WriteLine("Informe o nome do aluno: ");
-                        Console.WriteLine();
 
                         Aluno aluno = new Aluno();
                         aluno.Nome = Console.ReadLine();
+                        
+                        Console.WriteLine();
 
                         Console.WriteLine("Informe a nota do aluno: ");
-                        Console.WriteLine();
 
                         if (decimal.TryParse(Console.ReadLine(), out decimal nota))
                         {
@@ -41,12 +41,31 @@ namespace Revisao
                     case "2":
                         foreach (var a in alunos)
                         {
-                            Console.WriteLine($"ALUNO: {a.Nome} - NOTA: {a.Nota}");
+                            if (!string.IsNullOrEmpty(a.Nome))
+                            {
+                                Console.WriteLine($"ALUNO: {a.Nome} - NOTA: {a.Nota}");
+                            }
+                            
                         }
                         break;
 
                     case "3":
-                        //calcular media geral
+                        decimal notaTotal = 0;
+                        var numAlunos = 0;
+
+                        for (int i = 0; i < alunos.Length; i++)
+                        {
+                            if (!string.IsNullOrEmpty(alunos[i].Nome))
+                            {
+                                notaTotal = notaTotal + alunos[i].Nota;
+                                numAlunos++;
+                            }
+                        }
+
+                        var mediaGeral = notaTotal / numAlunos;
+
+                        Console.WriteLine($"MÉDIA GERAL: {mediaGeral}");
+
                         break;
 
                     default:
@@ -59,6 +78,7 @@ namespace Revisao
 
         private static string ObterOpcaoUser()
         {
+            Console.WriteLine();
             Console.WriteLine("Informe a opção desejada: ");
             Console.WriteLine("1 - Inserir novo aluno");
             Console.WriteLine("2 - Listar alunos");

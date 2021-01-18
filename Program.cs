@@ -18,12 +18,13 @@ namespace Revisao
                     case "1":
                         Console.WriteLine("Informe o nome do aluno: ");
                         Console.WriteLine();
+
                         Aluno aluno = new Aluno();
                         aluno.Nome = Console.ReadLine();
 
                         Console.WriteLine("Informe a nota do aluno: ");
                         Console.WriteLine();
-                        
+
                         if (decimal.TryParse(Console.ReadLine(), out decimal nota))
                         {
                             aluno.Nota = nota;
@@ -38,7 +39,10 @@ namespace Revisao
                         break;
 
                     case "2":
-                        //listar alunos
+                        foreach (var a in alunos)
+                        {
+                            Console.WriteLine($"ALUNO: {a.Nome} - NOTA: {a.Nota}");
+                        }
                         break;
 
                     case "3":
